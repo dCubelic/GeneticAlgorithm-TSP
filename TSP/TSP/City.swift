@@ -13,6 +13,10 @@ struct City: Equatable {
     
     let location: CGPoint
     
+    init(location: CGPoint) {
+        self.location = location
+    }
+    
     static func ==(lhs: City, rhs: City) -> Bool {
         return lhs.location == rhs.location
     }

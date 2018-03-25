@@ -12,10 +12,18 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var citiesView: UIView!
     @IBOutlet weak var generationLabel: UILabel!
+    @IBOutlet weak var totalLengthLabel: UILabel!
+    @IBOutlet weak var populationSlider: UISlider!
+    @IBOutlet weak var mutationSlider: UISlider!
+    @IBOutlet weak var populationSizeLabel: UILabel!
+    @IBOutlet weak var mutationChanceLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
     
     var locations: [CGPoint] = []
     
-    var geneticAlgorithm: GA?
+    var geneticAlgorithm: TSP?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
@@ -72,27 +80,56 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func onStart(_ sender: Any) {
-        geneticAlgorithm = GA(with: locations.map { City(location: $0) })
+    @IBAction func populationSliderChanged(_ sender: Any) {
+        populationSlider.value = Float(Int(populationSlider.value))
+        populationSizeLabel.text = "Population Size: \(populationSlider.value)"
+    }
+    
+    @IBAction func mutationSliderChanged(_ sender: Any) {
+        mutationChanceLabel.text = "Mutation Chance: \(mutationSlider.value)"
+    }
+    
+    @IBAction func startAction(_ sender: Any) {
+        startButton.isEnabled = false
+        stopButton.isEnabled = true
+        clearButton.isEnabled = false
+        populationSlider.isEnabled = false
+        mutationSlider.isEnabled = false
+        
+        geneticAlgorithm = TSP(with: locations.map { City(location: $0) }, populationSize: Int(populationSlider.value), mutationChance: Double(mutationSlider.value))
         geneticAlgorithm?.onNewGeneration = {
             (route, generation) in
             DispatchQueue.main.async {
                 self.generationLabel.text = "Generation: \(generation)"
+                self.totalLengthLabel.text = "Total Length: \(route.cost())"
                 self.drawRoute(route: route)
             }
         }
         
-        geneticAlgorithm?.start()
+        DispatchQueue.global().async {
+            self.geneticAlgorithm?.start()
+        }
     }
     
-    @IBAction func onClear(_ sender: Any) {
+    @IBAction func clearAction(_ sender: Any) {
+        startButton.isEnabled = true
+        stopButton.isEnabled = false
+        clearButton.isEnabled = false
+        
         locations.removeAll()
         citiesView.layer.sublayers?.removeAll()
         generationLabel.text = "Generation: 0"
     }
     
-    @IBAction func onStop(_ sender: Any) {
+    @IBAction func stopAction(_ sender: Any) {
+        startButton.isEnabled = true
+        stopButton.isEnabled = false
+        clearButton.isEnabled = true
+        populationSlider.isEnabled = true
+        mutationSlider.isEnabled = true
+        
         geneticAlgorithm?.stop()
     }
 }
+
 

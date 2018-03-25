@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Route {
+class Route: Individual {
     
     let cities: [City]
     
@@ -19,7 +19,7 @@ class Route {
         self.cities = cities
     }
     
-    func routeLength() -> CGFloat {
+    func cost() -> CGFloat {
         if let length = self.length {
             return length
         }
@@ -41,9 +41,5 @@ class Route {
         self.length = length
         
         return length
-    }
-    
-    func fitness(withTotalLength totalLength: CGFloat) -> CGFloat {
-        return 1 - (routeLength() / totalLength)
     }
 }

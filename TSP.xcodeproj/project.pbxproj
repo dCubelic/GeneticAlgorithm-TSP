@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B420BD05205EC8680069F16A /* GA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420BD04205EC8680069F16A /* GA.swift */; };
+		B420BD05205EC8680069F16A /* GeneticAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420BD04205EC8680069F16A /* GeneticAlgorithm.swift */; };
 		B44C5EB8205D7E3800CA4902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */; };
 		B44C5EBA205D7E3800CA4902 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EB9205D7E3800CA4902 /* ViewController.swift */; };
 		B44C5EBD205D7E3800CA4902 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44C5EBB205D7E3800CA4902 /* Main.storyboard */; };
@@ -15,10 +15,11 @@
 		B44C5EC2205D7E3800CA4902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44C5EC0205D7E3800CA4902 /* LaunchScreen.storyboard */; };
 		B44C5ECA205D7E4800CA4902 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EC9205D7E4800CA4902 /* City.swift */; };
 		B44C5ECC205D7F3700CA4902 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5ECB205D7F3700CA4902 /* Route.swift */; };
+		B49227442068482400C9FB89 /* TSP.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49227432068482400C9FB89 /* TSP.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B420BD04205EC8680069F16A /* GA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GA.swift; sourceTree = "<group>"; };
+		B420BD04205EC8680069F16A /* GeneticAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticAlgorithm.swift; sourceTree = "<group>"; };
 		B44C5EB4205D7E3800CA4902 /* TSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B44C5EB9205D7E3800CA4902 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +29,7 @@
 		B44C5EC3205D7E3800CA4902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B44C5EC9205D7E4800CA4902 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		B44C5ECB205D7F3700CA4902 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		B49227432068482400C9FB89 /* TSP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSP.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +63,23 @@
 			isa = PBXGroup;
 			children = (
 				B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */,
-				B44C5EC9205D7E4800CA4902 /* City.swift */,
-				B44C5ECB205D7F3700CA4902 /* Route.swift */,
-				B420BD04205EC8680069F16A /* GA.swift */,
+				B420BD04205EC8680069F16A /* GeneticAlgorithm.swift */,
+				B49227452068495500C9FB89 /* TSP */,
 				B44C5EB9205D7E3800CA4902 /* ViewController.swift */,
 				B44C5EBB205D7E3800CA4902 /* Main.storyboard */,
 				B44C5EBE205D7E3800CA4902 /* Assets.xcassets */,
 				B44C5EC0205D7E3800CA4902 /* LaunchScreen.storyboard */,
 				B44C5EC3205D7E3800CA4902 /* Info.plist */,
+			);
+			path = TSP;
+			sourceTree = "<group>";
+		};
+		B49227452068495500C9FB89 /* TSP */ = {
+			isa = PBXGroup;
+			children = (
+				B49227432068482400C9FB89 /* TSP.swift */,
+				B44C5EC9205D7E4800CA4902 /* City.swift */,
+				B44C5ECB205D7F3700CA4902 /* Route.swift */,
 			);
 			path = TSP;
 			sourceTree = "<group>";
@@ -146,9 +157,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B44C5EBA205D7E3800CA4902 /* ViewController.swift in Sources */,
+				B49227442068482400C9FB89 /* TSP.swift in Sources */,
 				B44C5ECC205D7F3700CA4902 /* Route.swift in Sources */,
 				B44C5EB8205D7E3800CA4902 /* AppDelegate.swift in Sources */,
-				B420BD05205EC8680069F16A /* GA.swift in Sources */,
+				B420BD05205EC8680069F16A /* GeneticAlgorithm.swift in Sources */,
 				B44C5ECA205D7E4800CA4902 /* City.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
