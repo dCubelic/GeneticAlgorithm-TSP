@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B420BD05205EC8680069F16A /* GA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420BD04205EC8680069F16A /* GA.swift */; };
 		B44C5EB8205D7E3800CA4902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */; };
 		B44C5EBA205D7E3800CA4902 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EB9205D7E3800CA4902 /* ViewController.swift */; };
 		B44C5EBD205D7E3800CA4902 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44C5EBB205D7E3800CA4902 /* Main.storyboard */; };
 		B44C5EBF205D7E3800CA4902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B44C5EBE205D7E3800CA4902 /* Assets.xcassets */; };
 		B44C5EC2205D7E3800CA4902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44C5EC0205D7E3800CA4902 /* LaunchScreen.storyboard */; };
+		B44C5ECA205D7E4800CA4902 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EC9205D7E4800CA4902 /* City.swift */; };
+		B44C5ECC205D7F3700CA4902 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5ECB205D7F3700CA4902 /* Route.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B420BD04205EC8680069F16A /* GA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GA.swift; sourceTree = "<group>"; };
 		B44C5EB4205D7E3800CA4902 /* TSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B44C5EB9205D7E3800CA4902 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		B44C5EBE205D7E3800CA4902 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B44C5EC1205D7E3800CA4902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B44C5EC3205D7E3800CA4902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B44C5EC9205D7E4800CA4902 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		B44C5ECB205D7F3700CA4902 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,9 @@
 			isa = PBXGroup;
 			children = (
 				B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */,
+				B44C5EC9205D7E4800CA4902 /* City.swift */,
+				B44C5ECB205D7F3700CA4902 /* Route.swift */,
+				B420BD04205EC8680069F16A /* GA.swift */,
 				B44C5EB9205D7E3800CA4902 /* ViewController.swift */,
 				B44C5EBB205D7E3800CA4902 /* Main.storyboard */,
 				B44C5EBE205D7E3800CA4902 /* Assets.xcassets */,
@@ -137,7 +146,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B44C5EBA205D7E3800CA4902 /* ViewController.swift in Sources */,
+				B44C5ECC205D7F3700CA4902 /* Route.swift in Sources */,
 				B44C5EB8205D7E3800CA4902 /* AppDelegate.swift in Sources */,
+				B420BD05205EC8680069F16A /* GA.swift in Sources */,
+				B44C5ECA205D7E4800CA4902 /* City.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +289,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5J7U5C6D83;
 				INFOPLIST_FILE = TSP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cubelic.dominik.TSP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5J7U5C6D83;
 				INFOPLIST_FILE = TSP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cubelic.dominik.TSP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
