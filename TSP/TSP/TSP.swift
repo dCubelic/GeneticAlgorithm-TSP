@@ -9,79 +9,79 @@
 import Foundation
 import UIKit
 
-class TSP: GeneticAlgorithm {
-    typealias I = Route
+class TSP: GenetskiAlgoritam {
+    typealias I = Ruta
     
-    var populationSize: Int
-    var mutationChance: Double
+    var veličinaPopulacije: Int
+    var vjerojatnostMutacije: Double
     
-    var population: [Route] = []
-    var isEvolving: Bool = false
+    var populacija: [Ruta] = []
+    var evoluira: Bool = false
     
-    var onNewGeneration: ((Route, Int) -> ())?
-    var generationNumber: Int = 1
+    var onNewGeneration: ((Ruta, Int) -> ())?
+    var brojGeneracije: Int = 1
     
-    init(with cities: [City], populationSize: Int, mutationChance: Double) {
-        self.populationSize = populationSize
-        self.mutationChance = mutationChance
-        self.population = randomPopulation(with: cities)
+    init(with gradovi: [Grad], veličinaPopulacije: Int, vjerojatnostMutacije: Double) {
+        self.veličinaPopulacije = veličinaPopulacije
+        self.vjerojatnostMutacije = vjerojatnostMutacije
+        self.populacija = nasumičnaPopulacija(s: gradovi)
     }
     
-    private func randomPopulation(with cities: [City]) -> [Route] {
-        var population: [Route] = []
+    private func nasumičnaPopulacija(s gradovi: [Grad]) -> [Ruta] {
+        var populacija: [Ruta] = []
         
-        for _ in 0..<populationSize {
-            population.append(Route(cities: randomizeCities(cities)))
+        for _ in 0..<veličinaPopulacije {
+            populacija.append(Ruta(gradovi: pomiješajGradove(gradovi)))
         }
         
-        return population
+        return populacija
     }
     
-    private func randomizeCities(_ cities: [City]) -> [City] {
-        return cities.sorted(by: { _,_ in arc4random() < arc4random() })
+    private func pomiješajGradove(_ gradovi: [Grad]) -> [Grad] {
+        return gradovi.sorted(by: { _,_ in arc4random() < arc4random() })
     }
     
-    func selectParent(fromGeneration generation: [Route], withTotalCost totalCost: CGFloat) -> Route? {
-        let fitness = CGFloat(Double(arc4random()) / Double(UINT32_MAX))
+    func odaberiRoditelja(izGeneracije generacija: [Ruta], sUkupnomTežinom ukupnaTežina: CGFloat) -> Ruta? {
+        let dobrota = CGFloat(Double(arc4random()) / Double(UINT32_MAX))
         
-        var currentFitness: CGFloat = 0.0
-        var result: Route?
-        generation.forEach { (route) in
-            if currentFitness <= fitness {
-                currentFitness += route.fitness(withTotalCost: totalCost)
-                result = route
+        var trenutnaDobrota: CGFloat = 0.0
+        var rezultat: Ruta?
+        generacija.forEach { (ruta) in
+            if trenutnaDobrota <= dobrota {
+                trenutnaDobrota += ruta.dobrota(sUkupnomTežinom: ukupnaTežina)
+                rezultat = ruta
             }
         }
         
-        return result
+        return rezultat
     }
     
-    func crossover(firstParent: Route, secondParent: Route) -> Route {
-        let slice: Int = Int(arc4random_uniform(UInt32(firstParent.cities.count)))
-        var cities: [City] = Array(firstParent.cities[0..<slice])
+    func križanje(prviRoditelj: Ruta, drugiRoditelj: Ruta) -> Ruta {
+        let odsječak: Int = Int(arc4random_uniform(UInt32(prviRoditelj.gradovi.count)))
+        var gradovi: [Grad] = Array(prviRoditelj.gradovi[0..<odsječak])
         
-        var index = slice
-        while cities.count < secondParent.cities.count {
-            let city = secondParent.cities[index]
-            if !cities.contains(city) {
-                cities.append(city)
+        var indeks = odsječak
+        while gradovi.count < drugiRoditelj.gradovi.count {
+            let grad = drugiRoditelj.gradovi[indeks]
+            if !gradovi.contains(grad) {
+                gradovi.append(grad)
             }
-            index = (index + 1) % secondParent.cities.count
+            indeks = (indeks + 1) % drugiRoditelj.gradovi.count
         }
         
-        return Route(cities: cities)
+        return Ruta(gradovi: gradovi)
     }
     
-    func mutate(child: Route) -> Route {
-        if mutationChance >= Double(Double(arc4random()) / Double(UINT32_MAX)) {
-            let firstIndex = Int(arc4random_uniform(UInt32(child.cities.count)))
-            let secondIndex = Int(arc4random_uniform(UInt32(child.cities.count)))
-            var cities = child.cities
-            cities.swapAt(firstIndex, secondIndex)
+    func mutiraj(dijete: Ruta) -> Ruta {
+        if vjerojatnostMutacije >= Double(Double(arc4random()) / Double(UINT32_MAX)) {
+            let prviIndeks = Int(arc4random_uniform(UInt32(dijete.gradovi.count)))
+            let drugiIndeks = Int(arc4random_uniform(UInt32(dijete.gradovi.count)))
+            var gradovi = dijete.gradovi
+            gradovi.swapAt(prviIndeks, drugiIndeks)
             
-            return Route(cities: cities)
+            return Ruta(gradovi: gradovi)
         }
         
-        return child
+        return dijete
     }
 }

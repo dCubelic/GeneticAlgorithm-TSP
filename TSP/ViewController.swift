@@ -51,10 +51,10 @@ class ViewController: UIViewController {
         }
     }
     
-    private func drawRoute(route: Route) {
-        guard let firstCity = route.cities.first else { return }
+    private func drawRoute(route: Ruta) {
+        guard let firstCity = route.gradovi.first else { return }
         
-        var otherCities = route.cities
+        var otherCities = route.gradovi
         otherCities.remove(at: 0)
         
         drawCities()
@@ -64,11 +64,11 @@ class ViewController: UIViewController {
             UIColor.black.setStroke()
             path.lineWidth = 1
             
-            path.move(to: firstCity.location)
+            path.move(to: firstCity.lokacija)
             otherCities.forEach { (city) in
-                path.addLine(to: city.location)
+                path.addLine(to: city.lokacija)
             }
-            path.addLine(to: firstCity.location)
+            path.addLine(to: firstCity.lokacija)
             
             path.stroke()
             
@@ -96,18 +96,18 @@ class ViewController: UIViewController {
         populationSlider.isEnabled = false
         mutationSlider.isEnabled = false
         
-        geneticAlgorithm = TSP(with: locations.map { City(location: $0) }, populationSize: Int(populationSlider.value), mutationChance: Double(mutationSlider.value))
+        geneticAlgorithm = TSP(with: locations.map { Grad(location: $0) }, veličinaPopulacije: Int(populationSlider.value), vjerojatnostMutacije: Double(mutationSlider.value))
         geneticAlgorithm?.onNewGeneration = {
             (route, generation) in
             DispatchQueue.main.async {
                 self.generationLabel.text = "Generation: \(generation)"
-                self.totalLengthLabel.text = "Total Length: \(route.cost())"
+                self.totalLengthLabel.text = "Total Length: \(route.težina())"
                 self.drawRoute(route: route)
             }
         }
         
         DispatchQueue.global().async {
-            self.geneticAlgorithm?.start()
+            self.geneticAlgorithm?.pokreni()
         }
     }
     
