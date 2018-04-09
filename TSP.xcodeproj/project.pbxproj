@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B420BD05205EC8680069F16A /* GeneticAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420BD04205EC8680069F16A /* GeneticAlgorithm.swift */; };
 		B44C5EB8205D7E3800CA4902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */; };
-		B44C5EBA205D7E3800CA4902 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EB9205D7E3800CA4902 /* ViewController.swift */; };
+		B44C5EBA205D7E3800CA4902 /* TSPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44C5EB9205D7E3800CA4902 /* TSPViewController.swift */; };
 		B44C5EBD205D7E3800CA4902 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44C5EBB205D7E3800CA4902 /* Main.storyboard */; };
 		B44C5EBF205D7E3800CA4902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B44C5EBE205D7E3800CA4902 /* Assets.xcassets */; };
 		B44C5EC2205D7E3800CA4902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B44C5EC0205D7E3800CA4902 /* LaunchScreen.storyboard */; };
@@ -22,7 +22,7 @@
 		B420BD04205EC8680069F16A /* GeneticAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticAlgorithm.swift; sourceTree = "<group>"; };
 		B44C5EB4205D7E3800CA4902 /* TSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B44C5EB9205D7E3800CA4902 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B44C5EB9205D7E3800CA4902 /* TSPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPViewController.swift; sourceTree = "<group>"; };
 		B44C5EBC205D7E3800CA4902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B44C5EBE205D7E3800CA4902 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B44C5EC1205D7E3800CA4902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 				B44C5EB7205D7E3800CA4902 /* AppDelegate.swift */,
 				B420BD04205EC8680069F16A /* GeneticAlgorithm.swift */,
 				B49227452068495500C9FB89 /* TSP */,
-				B44C5EB9205D7E3800CA4902 /* ViewController.swift */,
+				B44C5EB9205D7E3800CA4902 /* TSPViewController.swift */,
 				B44C5EBB205D7E3800CA4902 /* Main.storyboard */,
 				B44C5EBE205D7E3800CA4902 /* Assets.xcassets */,
 				B44C5EC0205D7E3800CA4902 /* LaunchScreen.storyboard */,
@@ -156,7 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B44C5EBA205D7E3800CA4902 /* ViewController.swift in Sources */,
+				B44C5EBA205D7E3800CA4902 /* TSPViewController.swift in Sources */,
 				B49227442068482400C9FB89 /* TSP.swift in Sources */,
 				B44C5ECC205D7F3700CA4902 /* Route.swift in Sources */,
 				B44C5EB8205D7E3800CA4902 /* AppDelegate.swift in Sources */,

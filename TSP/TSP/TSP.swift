@@ -41,14 +41,14 @@ class TSP: GeneticAlgorithm {
         return cities.sorted(by: { _,_ in arc4random() < arc4random() })
     }
     
-    func selectParent(fromGeneration generation: [Route], withTotalCost totalCost: CGFloat) -> Route? {
+    func selectParent(fromGeneration generation: [Route], withTotalFitness totalCost: CGFloat) -> Route? {
         let fitness = CGFloat(Double(arc4random()) / Double(UINT32_MAX))
         
         var currentFitness: CGFloat = 0.0
         var result: Route?
         generation.forEach { (route) in
             if currentFitness <= fitness {
-                currentFitness += route.fitness(withTotalCost: totalCost)
+                currentFitness += route.selectionProbability(withTotalFitness: totalCost)
                 result = route
             }
         }
@@ -57,10 +57,10 @@ class TSP: GeneticAlgorithm {
     }
     
     func crossover(firstParent: Route, secondParent: Route) -> Route {
-        let slice: Int = Int(arc4random_uniform(UInt32(firstParent.cities.count)))
-        var cities: [City] = Array(firstParent.cities[0..<slice])
+        let crossoverPoint: Int = Int(arc4random_uniform(UInt32(firstParent.cities.count)))
+        var cities: [City] = Array(firstParent.cities[0..<crossoverPoint])
         
-        var index = slice
+        var index = crossoverPoint
         while cities.count < secondParent.cities.count {
             let city = secondParent.cities[index]
             if !cities.contains(city) {

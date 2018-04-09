@@ -19,7 +19,7 @@ class Route: Individual {
         self.cities = cities
     }
     
-    func cost() -> CGFloat {
+    func fitness() -> CGFloat {
         if let length = self.length {
             return length
         }

@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 protocol Individual {
-    func cost() -> CGFloat
-    func fitness(withTotalCost totalCost: CGFloat) -> CGFloat
+    func fitness() -> CGFloat
+    func selectionProbability(withTotalFitness totalFitness: CGFloat) -> CGFloat
 }
 
 extension Individual {
-    func fitness(withTotalCost totalCost: CGFloat) -> CGFloat {
-        return 1 - (cost() / totalCost)
+    func selectionProbability(withTotalFitness totalFitness: CGFloat) -> CGFloat {
+        return 1 - (fitness() / totalFitness)
     }
 }
 
@@ -32,7 +32,7 @@ protocol GeneticAlgorithm {
     var onNewGeneration: ((I, Int) -> ())? { get set }
     var generationNumber: Int { get set }
     
-    func selectParent(fromGeneration generation: [I], withTotalCost totalCost: CGFloat) -> I?
+    func selectParent(fromGeneration generation: [I], withTotalFitness totalFitness: CGFloat) -> I?
     func crossover(firstParent: I, secondParent: I) -> I
     func mutate(child: I) -> I
 }
@@ -43,19 +43,19 @@ extension GeneticAlgorithm {
         isEvolving = true
         
         while isEvolving {
-            let totalPopulationCost = self.population.reduce(0.0, { (result, individual) -> CGFloat in
-                return result + individual.cost()
+            let totalPopulationFitness = self.population.reduce(0.0, { (result, individual) -> CGFloat in
+                return result + individual.fitness()
             })
 
-            let fitnessComparator: (I, I) -> Bool = { $0.fitness(withTotalCost: totalPopulationCost) > $1.fitness(withTotalCost: totalPopulationCost) }
-            let generation = self.population.sorted(by: fitnessComparator)
+            let probabilityComparator: (I, I) -> Bool = { $0.selectionProbability(withTotalFitness: totalPopulationFitness) > $1.selectionProbability(withTotalFitness: totalPopulationFitness) }
+            let generation = self.population.sorted(by: probabilityComparator)
             
             var nextGeneration: [I] = []
             
             for _ in 0..<self.populationSize {
                 guard
-                    let firstParent = self.selectParent(fromGeneration: generation, withTotalCost: totalPopulationCost),
-                    let secondParent = self.selectParent(fromGeneration: generation, withTotalCost: totalPopulationCost)
+                    let firstParent = self.selectParent(fromGeneration: generation, withTotalFitness: totalPopulationFitness),
+                    let secondParent = self.selectParent(fromGeneration: generation, withTotalFitness: totalPopulationFitness)
                     else { continue }
                 
                 let child = self.crossover(firstParent: firstParent, secondParent: secondParent)
@@ -65,7 +65,7 @@ extension GeneticAlgorithm {
             }
             self.population = nextGeneration
             
-            if let bestIndividual = self.population.min(by: fitnessComparator) {
+            if let bestIndividual = self.population.min(by: probabilityComparator) {
                 self.onNewGeneration?(bestIndividual, self.generationNumber)
             }
             

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TSPViewController: UIViewController {
     
     @IBOutlet weak var citiesView: UIView!
     @IBOutlet weak var generationLabel: UILabel!
@@ -22,32 +22,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     
     var locations: [CGPoint] = []
-    
     var geneticAlgorithm: TSP?
+    
+    let cityImageSize = CGSize(width: 30, height: 30)
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
         if citiesView.point(inside: touch.location(in: citiesView), with: event) {
+            if geneticAlgorithm?.isEvolving == true {
+                stopAction(self)
+            }
             let location = touch.location(in: citiesView)
             locations.append(location)
             
             drawCities()
-            
         }
     }
     
     private func drawCities() {
         
+        self.citiesView.subviews.forEach( { $0.removeFromSuperview() } )
         self.citiesView.layer.sublayers?.removeAll()
         
         self.locations.forEach { (location) in
-            let circle = UIBezierPath.init(arcCenter: location, radius: 5, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
-            let circleLayer = CAShapeLayer()
-            circleLayer.path = circle.cgPath
-            circleLayer.fillColor = UIColor.red.cgColor
-            circleLayer.strokeColor = UIColor.red.cgColor
-            self.citiesView.layer.addSublayer(circleLayer)
+            let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: location.x - cityImageSize.width / 2, y: location.y - cityImageSize.height / 2), size: cityImageSize))
+            imageView.image = #imageLiteral(resourceName: "city")
+            imageView.tintColor = .white
+            self.citiesView.addSubview(imageView)
         }
     }
     
@@ -75,7 +77,7 @@ class ViewController: UIViewController {
             let pathLayer = CAShapeLayer()
             pathLayer.path = path.cgPath
             pathLayer.fillColor = UIColor.clear.cgColor
-            pathLayer.strokeColor = UIColor.black.cgColor
+            pathLayer.strokeColor = UIColor.yellow.cgColor
             self.citiesView.layer.addSublayer(pathLayer)
         }
     }
@@ -101,7 +103,7 @@ class ViewController: UIViewController {
             (route, generation) in
             DispatchQueue.main.async {
                 self.generationLabel.text = "Generation: \(generation)"
-                self.totalLengthLabel.text = "Total Length: \(route.cost())"
+                self.totalLengthLabel.text = "Total Length: \(route.fitness())"
                 self.drawRoute(route: route)
             }
         }
@@ -117,7 +119,12 @@ class ViewController: UIViewController {
         clearButton.isEnabled = false
         
         locations.removeAll()
-        citiesView.layer.sublayers?.removeAll()
+//        citiesView.layer.sublayers?.removeAll()
+        
+//        citiesView.subviews.forEach( { $0.removeFromSuperview() } )
+        self.citiesView.subviews.forEach( { $0.removeFromSuperview() } )
+        self.citiesView.layer.sublayers?.removeAll()
+        
         generationLabel.text = "Generation: 0"
     }
     
