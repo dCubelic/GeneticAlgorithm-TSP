@@ -116,12 +116,10 @@ class TSPViewController: UIViewController {
     @IBAction func clearAction(_ sender: Any) {
         startButton.isEnabled = true
         stopButton.isEnabled = false
-        clearButton.isEnabled = false
+        clearButton.isEnabled = true
         
         locations.removeAll()
-//        citiesView.layer.sublayers?.removeAll()
-        
-//        citiesView.subviews.forEach( { $0.removeFromSuperview() } )
+
         self.citiesView.subviews.forEach( { $0.removeFromSuperview() } )
         self.citiesView.layer.sublayers?.removeAll()
         

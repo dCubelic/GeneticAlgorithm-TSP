@@ -41,14 +41,14 @@ class TSP: GeneticAlgorithm {
         return cities.sorted(by: { _,_ in arc4random() < arc4random() })
     }
     
-    func selectParent(fromGeneration generation: [Route], withTotalFitness totalCost: CGFloat) -> Route? {
+    func selectParent(fromGeneration generation: [Route], withTotalFitness totalFitness: CGFloat) -> Route? {
         let fitness = CGFloat(Double(arc4random()) / Double(UINT32_MAX))
         
         var currentFitness: CGFloat = 0.0
         var result: Route?
         generation.forEach { (route) in
             if currentFitness <= fitness {
-                currentFitness += route.selectionProbability(withTotalFitness: totalCost)
+                currentFitness += route.selectionProbability(withTotalFitness: totalFitness)
                 result = route
             }
         }

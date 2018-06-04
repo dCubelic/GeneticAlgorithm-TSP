@@ -43,7 +43,7 @@
                                     <action selector="stopAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SzJ-Qz-iUl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCD-U9-HbE">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCD-U9-HbE">
                                 <rect key="frame" x="250" y="622" width="125" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="0bX-1L-76o"/>
